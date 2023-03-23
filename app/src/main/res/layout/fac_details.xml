@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="563dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/nameTv"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:textSize="45sp"
+            android:textStyle="bold"
+            tools:text="CONTACT" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="88dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="456dp">
+
+        <ImageView
+            android:id="@+id/call"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="17dp"
+            android:layout_marginEnd="275dp"
+            android:src="@drawable/phone" />
+
+        <ImageView
+            android:id="@+id/whatsapp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="17dp"
+            android:layout_marginEnd="90dp"
+            android:src="@drawable/whatsapp" />
+
+    </RelativeLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="250dp"
+        android:padding="10dp"
+        android:stretchColumns="2">
+
+        <TableRow>
+
+            <TextView
+                android:text="Department     :  "
+                android:textSize="24sp"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/deptTv"
+                android:layout_marginStart="10dp"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:text="NA" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:text="Phone               :  "
+                android:textSize="24sp"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/phoneTv"
+                android:layout_marginStart="10dp"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:text="NA" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:text="Intercom           :  "
+                android:textSize="24sp"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/interTv"
+                android:layout_marginStart="10dp"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:text="NA" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:text="Alt. Phone        :  "
+                android:textSize="24sp"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/altTv"
+                android:textColor="@color/black"
+                android:layout_marginStart="10dp"
+                android:padding="5dp"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:text="NA" />
+        </TableRow>
+
+    </TableLayout>
+
+</RelativeLayout>
