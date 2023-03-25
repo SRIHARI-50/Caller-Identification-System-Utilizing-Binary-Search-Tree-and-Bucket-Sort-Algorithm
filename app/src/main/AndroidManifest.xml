@@ -9,7 +9,7 @@
         android:icon="@drawable/phonelogo"
         android:label="PSGiTech Contacts"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+        android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
         tools:targetApi="31">
         <activity
             android:name=".login_page"
