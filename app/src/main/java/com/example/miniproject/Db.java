@@ -22,12 +22,13 @@ public class Db extends SQLiteOpenHelper {
     public void create(){
 
         String fac = "CREATE TABLE \"fac_details\" (\n" +
-                "\t\"id\"\tTEXT,\n" +
-                "\t\"username\"\tTEXT NOT NULL,\n" +
-                "\t\"dept\"\tTEXT,\n" +
-                "\t\"phno\"\tTEXT NOT NULL,\n" +
-                "\t\"intercom\"\tTEXT NOT NULL,\n" +
-                "\t\"alt_phno\"\tTEXT,\n" +
+                "\t\"id\"\t TEXT,\n" +
+                "\t\"username\"\t TEXT NOT NULL,\n" +
+                "\t\"dept\"\t TEXT,\n" +
+                "\t\"email\"\t TEXT NOT NULL,\n" +
+                "\t\"phno\"\t TEXT NOT NULL,\n" +
+                "\t\"intercom\"\t TEXT NOT NULL,\n" +
+                "\t\"alt_phno\"\t TEXT,\n" +
                 "\tPRIMARY KEY(\"id\")\n" +
                 ")";
 
@@ -59,8 +60,8 @@ public class Db extends SQLiteOpenHelper {
         };
 
         String[][] fac_data = {
-                {"1","abc","CSE","9876543210","1",""},
-                {"2","xyz","EEE","1234567890","2",""}
+                {"1","abc","CSE","abc@gmail.com","9876543210","1",""},
+                {"2","xyz","EEE","xyz@gmail.com","1234567890","2",""}
         };
 
         String[][] stu_data = {
@@ -73,7 +74,7 @@ public class Db extends SQLiteOpenHelper {
         }
 
         for(int i=0;i< fac_data.length;i++){
-            db.execSQL("insert into fac_details values ( '" + fac_data[i][0] + "','"+ fac_data[i][1] +"','"+ fac_data[i][2] +"','"+ fac_data[i][3] +"','"+ fac_data[i][4] +"','"+ fac_data[i][5] +"');");
+            db.execSQL("insert into fac_details values ( '" + fac_data[i][0] + "','"+ fac_data[i][1] +"','"+ fac_data[i][2] +"','"+ fac_data[i][3] +"','"+ fac_data[i][4] +"','"+ fac_data[i][5] +"','"+ fac_data[i][6] +"');");
         }
 
         for(int i=0;i< stu_data.length;i++){

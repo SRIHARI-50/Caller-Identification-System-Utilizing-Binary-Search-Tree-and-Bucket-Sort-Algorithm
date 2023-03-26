@@ -16,7 +16,7 @@ import java.util.Objects;
 
 public class facContact extends AppCompatActivity {
 
-    private TextView nameTv,phoneTv,deptTv,interTv,altTv;
+    private TextView nameTv,phoneTv,deptTv,interTv,altTv,emailTv;
 
     private String id;
 
@@ -44,6 +44,7 @@ public class facContact extends AppCompatActivity {
         deptTv = findViewById(R.id.deptTv);
         interTv = findViewById(R.id.interTv);
         altTv = findViewById(R.id.altTv);
+        emailTv = findViewById(R.id.emailTv);
 
         String phone = loadDataById();
 
@@ -90,6 +91,7 @@ public class facContact extends AppCompatActivity {
                 String name =  ""+cursor.getString(cursor.getColumnIndexOrThrow("username"));
                 phone = ""+cursor.getString(cursor.getColumnIndexOrThrow("phno"));
                 String dept = ""+cursor.getString(cursor.getColumnIndexOrThrow("dept"));
+                String email = ""+cursor.getString(cursor.getColumnIndexOrThrow("email"));
                 String intercom = ""+cursor.getString(cursor.getColumnIndexOrThrow("intercom"));
                 String alt = ""+cursor.getString(cursor.getColumnIndexOrThrow("alt_phno"));
 
@@ -97,6 +99,7 @@ public class facContact extends AppCompatActivity {
                 nameTv.setText(name);
                 phoneTv.setText(phone);
                 deptTv.setText(dept);
+                emailTv.setText(email);
                 interTv.setText(intercom);
                 altTv.setText(alt);
 
