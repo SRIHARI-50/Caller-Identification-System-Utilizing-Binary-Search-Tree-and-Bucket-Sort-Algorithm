@@ -21,15 +21,16 @@
             android:id="@+id/contact_name"
             android:layout_width="215dp"
             android:layout_height="55dp"
-            android:textColor="@color/black"
+            android:textColor="@color/grey"
             android:layout_alignParentStart="true"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="34dp"
             android:layout_toStartOf="@+id/dial"
             android:gravity="center_vertical"
             android:text="Contact Name"
+            android:textStyle="bold"
             android:translationY="7dp"
-            android:textSize="23sp" />
+            android:textSize="20sp" />
 
         <ImageView
             android:id="@+id/dial"

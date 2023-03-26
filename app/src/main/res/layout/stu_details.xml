@@ -65,7 +65,7 @@
             <TextView
                 android:text="Department     :"
                 android:textSize="24sp"
-                android:textColor="@color/black"
+                android:textColor="@color/grey"
                 android:textStyle="bold" />
 
             <TextView
@@ -83,7 +83,7 @@
             <TextView
                 android:text="Batch                :"
                 android:textSize="24sp"
-                android:textColor="@color/black"
+                android:textColor="@color/grey"
                 android:textStyle="bold" />
 
             <TextView
@@ -101,7 +101,7 @@
             <TextView
                 android:text="Phone               :  "
                 android:textSize="24sp"
-                android:textColor="@color/black"
+                android:textColor="@color/grey"
                 android:textStyle="bold" />
 
             <TextView
@@ -119,7 +119,7 @@
             <TextView
                 android:text="Alt. Phone        :  "
                 android:textSize="24sp"
-                android:textColor="@color/black"
+                android:textColor="@color/grey"
                 android:textStyle="bold" />
 
             <TextView
