@@ -25,10 +25,10 @@ public class Db extends SQLiteOpenHelper {
                 "\t\"id\"\t TEXT,\n" +
                 "\t\"username\"\t TEXT NOT NULL,\n" +
                 "\t\"dept\"\t TEXT,\n" +
-                "\t\"email\"\t TEXT NOT NULL,\n" +
                 "\t\"phno\"\t TEXT NOT NULL,\n" +
                 "\t\"intercom\"\t TEXT NOT NULL,\n" +
                 "\t\"alt_phno\"\t TEXT,\n" +
+                "\t\"email\"\t TEXT,\n" +
                 "\tPRIMARY KEY(\"id\")\n" +
                 ")";
 
@@ -60,8 +60,8 @@ public class Db extends SQLiteOpenHelper {
         };
 
         String[][] fac_data = {
-                {"1","abc","CSE","abc@gmail.com","9876543210","1",""},
-                {"2","xyz","EEE","xyz@gmail.com","1234567890","2",""}
+                {"1","abc","CSE","9876543210","1","","abc@gmail.com"},
+                {"2","xyz","EEE","1234567890","2","","xyz@gmail.com"}
         };
 
         String[][] stu_data = {

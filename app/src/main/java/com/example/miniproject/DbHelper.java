@@ -137,10 +137,10 @@ public class DbHelper extends SQLiteOpenHelper {
                         ""+cursor.getInt(cursor.getColumnIndexOrThrow("id")),
                         ""+cursor.getString(cursor.getColumnIndexOrThrow("username")),
                         ""+cursor.getString(cursor.getColumnIndexOrThrow("dept")),
-                        ""+cursor.getString(cursor.getColumnIndexOrThrow("email")),
                         ""+cursor.getString(cursor.getColumnIndexOrThrow("phno")),
                         ""+cursor.getString(cursor.getColumnIndexOrThrow("intercom")),
-                        ""+cursor.getString(cursor.getColumnIndexOrThrow("alt_phno"))
+                        ""+cursor.getString(cursor.getColumnIndexOrThrow("alt_phno")),
+                        ""+cursor.getString(cursor.getColumnIndexOrThrow("email"))
                 );
                 arrayList.add(modelContact);
             }while (cursor.moveToNext());

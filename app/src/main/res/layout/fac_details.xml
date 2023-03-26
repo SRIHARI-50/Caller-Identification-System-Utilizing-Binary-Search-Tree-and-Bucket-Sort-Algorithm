@@ -78,23 +78,6 @@
                 android:textStyle="bold"
                 tools:text="NA" />
         </TableRow>
-        <TableRow>
-
-            <TextView
-                android:text="Email            :"
-                android:textSize="24sp"
-                android:textColor="@color/blue"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/emailTv"
-                android:layout_marginStart="10dp"
-                android:padding="5dp"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                tools:text="NA" />
-        </TableRow>
 
         <TableRow>
 
@@ -145,6 +128,24 @@
                 android:textColor="@color/black"
                 android:layout_marginStart="10dp"
                 android:padding="5dp"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:text="NA" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:text="Email            :"
+                android:textSize="24sp"
+                android:textColor="@color/blue"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/emailTv"
+                android:layout_marginStart="10dp"
+                android:padding="5dp"
+                android:textColor="@color/black"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 tools:text="NA" />
