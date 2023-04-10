@@ -13,6 +13,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -36,11 +38,20 @@ public class homepage extends AppCompatActivity {
 
     public Db d;
 
+    Button cs,ee,ec,me,cv,all;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
+
+        cs = findViewById(R.id.cse);
+        ee = findViewById(R.id.eee);
+        ec = findViewById(R.id.ece);
+        all = findViewById(R.id.all);
+        me = findViewById(R.id.mech);
+        cv = findViewById(R.id.civil);
 
         d = new Db(this);
 
@@ -112,7 +123,47 @@ public class homepage extends AppCompatActivity {
         nav.setCheckedItem(R.id.fac);
         s = "fac";
 
+        cs.setOnClickListener(view -> {
+            if (s.equals("fac"))
+                filterContact("CSE");
+            else
+                stuFilterContact("CSE");
+        });
 
+        ee.setOnClickListener(view -> {
+            if (s.equals("fac"))
+                filterContact("EEE");
+            else
+                stuFilterContact("EEE");
+        });
+
+        ec.setOnClickListener(view -> {
+            if (s.equals("fac"))
+                filterContact("ECE");
+            else
+                stuFilterContact("ECE");
+        });
+
+        me.setOnClickListener(view -> {
+            if (s.equals("fac"))
+                filterContact("MECH");
+            else
+                stuFilterContact("MECH");
+        });
+
+        cv.setOnClickListener(view -> {
+            if (s.equals("fac"))
+                filterContact("CIVIL");
+            else
+                stuFilterContact("CIVIL");
+        });
+
+        all.setOnClickListener(view -> {
+            if (s.equals("fac"))
+                loadData();
+            else
+                stuloadData();
+        });
     }
 
     public void onBackPressed(){
@@ -140,6 +191,8 @@ public class homepage extends AppCompatActivity {
         SearchView searchView = (SearchView) item1.getActionView();
         Toolbar toolbar = (Toolbar) item2.getActionView();
 
+        searchView.setMaxWidth(690);
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,draw,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         draw.addDrawerListener(toggle);
         toggle.syncState();
@@ -166,6 +219,16 @@ public class homepage extends AppCompatActivity {
 
         return true;
 
+    }
+
+    private void stuFilterContact(String query){
+        adapterContac = new stuAdapter(this,dbHelper.getStuFilterContact(query));
+        contactRv.setAdapter(adapterContac);
+    }
+
+    private void filterContact(String query){
+        adapterContact = new facAdapter(this,dbHelper.getFilterContact(query));
+        contactRv.setAdapter(adapterContact);
     }
 
     private void searchContact(String query) {
