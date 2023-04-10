@@ -23,7 +23,7 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class AddEditContact extends AppCompatActivity {
+public class addContact extends AppCompatActivity {
 
     private ImageView profileIv;
     private EditText nameEt,phoneEt,emailEt,noteEt;
@@ -36,24 +36,7 @@ public class AddEditContact extends AppCompatActivity {
     //action bar
     private ActionBar actionBar;
 
-    //permission constant
-    private static final int CAMERA_PERMISSION_CODE = 100;
-    private static final int STORAGE_PERMISSION_CODE = 200;
-    private static final int IMAGE_FROM_GALLERY_CODE = 300;
-    private static final int IMAGE_FROM_CAMERA_CODE = 400;
-
-    // string array of permission
-    private String[] cameraPermission;
-    private String[] storagePermission;
-
-    //Image uri var
-    private Uri imageUri;
-
-    //database helper
     private DbHelper dbHelper;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
