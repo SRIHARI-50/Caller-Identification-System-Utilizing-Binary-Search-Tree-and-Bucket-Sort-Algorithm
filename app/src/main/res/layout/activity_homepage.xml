@@ -11,7 +11,9 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/fragment_container"/>
+        android:id="@+id/fragment_container">
+
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,11 +32,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="CSE"/>
+
         <Button
             android:id="@+id/eee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="EEE"/>
+
 
     </LinearLayout>
 
@@ -79,5 +83,17 @@
         app:itemTextColor="@color/black"
         app:menu="@menu/drawer_menu"
         tools:ignore="RtlCompat" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:translationY="600dp"
+            android:translationX="310dp"
+            android:src="@drawable/add"
+            android:id="@+id/add"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.drawerlayout.widget.DrawerLayout>

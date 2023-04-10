@@ -38,7 +38,7 @@ public class homepage extends AppCompatActivity {
 
     public Db d;
 
-    Button cs,ee,ec,me,cv,all;
+    Button cs,ee,ec,me,cv,all,add;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -52,6 +52,8 @@ public class homepage extends AppCompatActivity {
         all = findViewById(R.id.all);
         me = findViewById(R.id.mech);
         cv = findViewById(R.id.civil);
+
+        add = findViewById(R.id.add);
 
         d = new Db(this);
 
@@ -163,6 +165,12 @@ public class homepage extends AppCompatActivity {
                 loadData();
             else
                 stuloadData();
+        });
+
+        add.setOnClickListener(view -> {
+
+            Intent intent = new Intent(getApplicationContext(),login_page.class);
+            startActivity(intent);
         });
     }
 
