@@ -56,17 +56,27 @@ public class Db extends SQLiteOpenHelper {
         db.execSQL(fac);
 
         String[][] login = {
-                {"1","user","1234"}
+                {"1","user","1234"},
+                {"2","Sri","sri"},
+                {"3","Sakthi","sakthi"},
+                {"4","Janani","janani"}
         };
 
         String[][] fac_data = {
-                {"1","abc","CSE","9876543210","1","","abc@gmail.com"},
-                {"2","xyz","EEE","1234567890","2","","xyz@gmail.com"}
+                {"1","Mahavishnu","CSE","8015514070","1","","mvvc@psgitech.ac.in"},
+                {"2","Aravindhraj","CSE","9487883339","2","","aravindhraj@psgitech.ac.in"},
+                {"3","Paldurai","ECE","8973277670","3","","paldurai.k@psgitech.ac.in"},
+                {"4","Santhanamari","ECE","9994229737","4","","gsm@psgitech.ac.in"},
+                {"5","Vilasini","CSE","9677819117","5","","vilasini@psgitech.ac.in"}
         };
 
         String[][] stu_data = {
-                {"1","abcd","3","CSE","1234567890",""},
-                {"2","lmno","2","ECE","9876543102",""}
+                {"1","Janani","3","CSE","9080359005",""},
+                {"2","Srihari","3","CSE","9994502549",""},
+                {"3","Sakthivelraj","3","CSE","9003322644",""},
+                {"4","Bhuvaneshwari","3","ECE","9790673402",""},
+                {"5","Kareshmaa","4","CSE","9361261095",""},
+                {"6","Mirnalani","3","ECE","7358894368",""}
         };
 
         for(int i=0;i< login.length;i++){
