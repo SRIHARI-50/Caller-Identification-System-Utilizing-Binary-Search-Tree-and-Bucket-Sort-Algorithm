@@ -45,7 +45,10 @@ public class stucontact extends AppCompatActivity {
         yearTv = findViewById(R.id.yearTv);
         altTv = findViewById(R.id.altTv);
 
-        String phone = loadDataById();
+        String[] nos = loadDataById();
+
+        String phone = nos[0];
+        String alt = nos[1];
 
         Objects.requireNonNull(getSupportActionBar()).setTitle("");
 
@@ -58,6 +61,16 @@ public class stucontact extends AppCompatActivity {
 
             startActivity(callIntent);
 
+        });
+
+        altTv.setOnClickListener(view -> {
+
+            String no = "tel:" + alt;
+
+            Uri number = Uri.parse(no);
+            Intent callIntent = new Intent(Intent.ACTION_DIAL,number);
+
+            startActivity(callIntent);
         });
 
         wa.setOnClickListener(view -> {
@@ -77,9 +90,9 @@ public class stucontact extends AppCompatActivity {
 
     }
 
-    private String loadDataById() {
+    private String[] loadDataById() {
 
-        String phone = null;
+        String phone = "",alt = "";
 
         String selectQuery =  "SELECT * FROM stu_details WHERE id =\"" + id + "\"";
 
@@ -93,7 +106,7 @@ public class stucontact extends AppCompatActivity {
                 phone = ""+cursor.getString(cursor.getColumnIndexOrThrow("phno"));
                 String dept = ""+cursor.getString(cursor.getColumnIndexOrThrow("dept"));
                 String year = ""+cursor.getString(cursor.getColumnIndexOrThrow("yr"));
-                String alt = ""+cursor.getString(cursor.getColumnIndexOrThrow("alt_phno"));
+                alt = ""+cursor.getString(cursor.getColumnIndexOrThrow("alt_phno"));
 
 
                 nameTv.setText(name);
@@ -107,7 +120,7 @@ public class stucontact extends AppCompatActivity {
 
         db.close();
 
-        return phone;
+        return new String[]{phone, alt};
 
     }
 }

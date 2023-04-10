@@ -16,7 +16,7 @@
     </FrameLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:paddingLeft="45dp"
         android:layout_height="wrap_content">
 
@@ -45,7 +45,7 @@
     <LinearLayout
         android:paddingLeft="45dp"
         android:layout_marginTop="50dp"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <Button
@@ -85,12 +85,13 @@
         tools:ignore="RtlCompat" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_marginTop="400dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:translationY="600dp"
+            android:translationY="200dp"
             android:translationX="310dp"
             android:src="@drawable/add"
             android:id="@+id/add"/>
