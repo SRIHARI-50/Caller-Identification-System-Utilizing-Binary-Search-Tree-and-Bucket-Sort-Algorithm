@@ -182,4 +182,69 @@ public class DbHelper extends SQLiteOpenHelper {
         return arrayList;
     }
 
+    public ArrayList<stumodel> getStuFilterContact(String query){
+
+        // it will return arraylist of modelContact class
+        ArrayList<stumodel> contactList = new ArrayList<>();
+
+        // get readable database
+        SQLiteDatabase db = getReadableDatabase();
+
+        //query for search
+        String queryToSearch = "SELECT * FROM stu_details WHERE dept = '" +query+"'";
+
+        Cursor cursor = db.rawQuery(queryToSearch,null);
+
+        // looping through all record and add to list
+        if (cursor.moveToFirst()){
+            do {
+                stumodel modelContact = new stumodel(
+
+                        ""+cursor.getInt(cursor.getColumnIndexOrThrow("id")),
+                        ""+cursor.getString(cursor.getColumnIndexOrThrow("name")),
+                        ""+cursor.getString(cursor.getColumnIndexOrThrow("yr")),
+                        ""+cursor.getString(cursor.getColumnIndexOrThrow("dept")),
+                        ""+cursor.getString(cursor.getColumnIndexOrThrow("phno")),
+                        ""+cursor.getString(cursor.getColumnIndexOrThrow("alt_phno"))
+                );
+                contactList.add(modelContact);
+            }while (cursor.moveToNext());
+        }
+        db.close();
+        return contactList;
+    }
+
+    public ArrayList<facmodel> getFilterContact(String query){
+
+        // it will return arraylist of modelContact class
+        ArrayList<facmodel> contactList = new ArrayList<>();
+
+        // get readable database
+        SQLiteDatabase db = getReadableDatabase();
+
+        //query for search
+        String queryToSearch = "SELECT * FROM fac_details WHERE dept = '" +query+"'";
+
+        Cursor cursor = db.rawQuery(queryToSearch,null);
+
+        // looping through all record and add to list
+        if (cursor.moveToFirst()){
+            do {
+                facmodel modelContact = new facmodel(
+
+                        ""+cursor.getInt(cursor.getColumnIndexOrThrow("id")),
+                        ""+cursor.getString(cursor.getColumnIndexOrThrow("username")),
+                        ""+cursor.getString(cursor.getColumnIndexOrThrow("dept")),
+                        ""+cursor.getString(cursor.getColumnIndexOrThrow("email")),
+                        ""+cursor.getString(cursor.getColumnIndexOrThrow("phno")),
+                        ""+cursor.getString(cursor.getColumnIndexOrThrow("intercom")),
+                        ""+cursor.getString(cursor.getColumnIndexOrThrow("alt_phno"))
+                );
+                contactList.add(modelContact);
+            }while (cursor.moveToNext());
+        }
+        db.close();
+        return contactList;
+    }
+
 }
