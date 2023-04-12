@@ -1,6 +1,7 @@
 package com.example.miniproject;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -60,6 +61,9 @@ public class addStuContact extends AppCompatActivity {
             );
 
             Toast.makeText(getApplicationContext(), "Inserted Successfully.... ", Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(getApplicationContext(),homepage.class);
+            startActivity(intent);
 
         }
 
