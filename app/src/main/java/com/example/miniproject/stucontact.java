@@ -16,7 +16,7 @@ import java.util.Objects;
 
 public class stucontact extends AppCompatActivity {
 
-    private TextView nameTv,phoneTv,deptTv,yearTv,altTv;
+    private TextView nameTv,phoneTv,deptTv,yearTv,altTv,emailTv,regTv;
 
     private String id;
 
@@ -44,6 +44,8 @@ public class stucontact extends AppCompatActivity {
         deptTv = findViewById(R.id.deptTv);
         yearTv = findViewById(R.id.yearTv);
         altTv = findViewById(R.id.altTv);
+        emailTv = findViewById(R.id.emailTv);
+        regTv = findViewById(R.id.regTv);
 
         String[] nos = loadDataById();
 
@@ -105,12 +107,16 @@ public class stucontact extends AppCompatActivity {
                 String name =  ""+cursor.getString(cursor.getColumnIndexOrThrow("name"));
                 phone = ""+cursor.getString(cursor.getColumnIndexOrThrow("phno"));
                 String dept = ""+cursor.getString(cursor.getColumnIndexOrThrow("dept"));
+                String reg = ""+cursor.getString(cursor.getColumnIndexOrThrow("reg"));
+                String email = ""+cursor.getString(cursor.getColumnIndexOrThrow("email"));
                 String year = ""+cursor.getString(cursor.getColumnIndexOrThrow("yr"));
                 alt = ""+cursor.getString(cursor.getColumnIndexOrThrow("alt_phno"));
 
 
                 nameTv.setText(name);
                 phoneTv.setText(phone);
+                regTv.setText(reg);
+                emailTv.setText(email);
                 deptTv.setText(dept);
                 yearTv.setText(year);
                 altTv.setText(alt);

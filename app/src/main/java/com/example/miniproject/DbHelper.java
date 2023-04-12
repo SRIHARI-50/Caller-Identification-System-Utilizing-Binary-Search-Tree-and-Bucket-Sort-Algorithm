@@ -106,8 +106,10 @@ public class DbHelper extends SQLiteOpenHelper {
 
                         ""+cursor.getInt(cursor.getColumnIndexOrThrow("id")),
                         ""+cursor.getString(cursor.getColumnIndexOrThrow("name")),
+                        ""+cursor.getInt(cursor.getColumnIndexOrThrow("reg")),
                         ""+cursor.getString(cursor.getColumnIndexOrThrow("yr")),
                         ""+cursor.getString(cursor.getColumnIndexOrThrow("dept")),
+                        ""+cursor.getInt(cursor.getColumnIndexOrThrow("email")),
                         ""+cursor.getString(cursor.getColumnIndexOrThrow("phno")),
                         ""+cursor.getString(cursor.getColumnIndexOrThrow("alt_phno"))
                 );
@@ -166,8 +168,10 @@ public class DbHelper extends SQLiteOpenHelper {
 
                         ""+cursor.getInt(cursor.getColumnIndexOrThrow("id")),
                         ""+cursor.getString(cursor.getColumnIndexOrThrow("name")),
+                        ""+cursor.getInt(cursor.getColumnIndexOrThrow("reg")),
                         ""+cursor.getString(cursor.getColumnIndexOrThrow("yr")),
                         ""+cursor.getString(cursor.getColumnIndexOrThrow("dept")),
+                        ""+cursor.getInt(cursor.getColumnIndexOrThrow("email")),
                         ""+cursor.getString(cursor.getColumnIndexOrThrow("phno")),
                         ""+cursor.getString(cursor.getColumnIndexOrThrow("alt_phno"))
                 );
@@ -195,11 +199,12 @@ public class DbHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()){
             do {
                 stumodel modelContact = new stumodel(
-
                         ""+cursor.getInt(cursor.getColumnIndexOrThrow("id")),
                         ""+cursor.getString(cursor.getColumnIndexOrThrow("name")),
+                        ""+cursor.getInt(cursor.getColumnIndexOrThrow("reg")),
                         ""+cursor.getString(cursor.getColumnIndexOrThrow("yr")),
                         ""+cursor.getString(cursor.getColumnIndexOrThrow("dept")),
+                        ""+cursor.getInt(cursor.getColumnIndexOrThrow("email")),
                         ""+cursor.getString(cursor.getColumnIndexOrThrow("phno")),
                         ""+cursor.getString(cursor.getColumnIndexOrThrow("alt_phno"))
                 );

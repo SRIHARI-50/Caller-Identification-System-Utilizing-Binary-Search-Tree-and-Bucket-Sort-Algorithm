@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="563dp"
+        android:layout_marginBottom="590dp"
         android:orientation="vertical">
 
         <TextView
@@ -30,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="88dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="456dp">
+        android:layout_marginBottom="490dp">
 
         <ImageView
             android:id="@+id/call"
@@ -55,8 +55,7 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="200dp"
+        android:layout_marginTop="270dp"
         android:layout_marginStart="10dp"
         android:padding="10dp"
         android:stretchColumns="2">
@@ -118,24 +117,6 @@
         <TableRow>
 
             <TextView
-                android:text="Alt. Phone    :"
-                android:textSize="24sp"
-                android:textColor="@color/blue"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/altTv"
-                android:textColor="@color/black"
-                android:layout_marginStart="10dp"
-                android:padding="5dp"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                tools:text="NA" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
                 android:text="Email            :"
                 android:textSize="24sp"
                 android:textColor="@color/blue"
@@ -146,6 +127,25 @@
                 android:layout_marginStart="10dp"
                 android:padding="5dp"
                 android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:width="220dp"
+                tools:text="NA" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:text="Alt. Phone    :"
+                android:textSize="24sp"
+                android:textColor="@color/blue"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/altTv"
+                android:textColor="@color/black"
+                android:layout_marginStart="10dp"
+                android:padding="5dp"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 tools:text="NA" />

@@ -9,13 +9,19 @@ public class stumodel {
     private final String yr;
     private final String altno;
 
-    public stumodel(String id, String name,String yr,String dept, String phone, String altno) {
+    private final String email;
+
+    private final String reg;
+
+    public stumodel(String id, String name,String reg, String yr,String dept, String email, String phone, String altno) {
         this.id = id;
         this.name = name;
         this.yr = yr;
         this.dept = dept;
         this.phone = phone;
         this.altno = altno;
+        this.reg = reg;
+        this.email = email;
     }
 
     public String getId() {
@@ -41,5 +47,11 @@ public class stumodel {
         return altno;
     }
 
+    public String getReg() {
+        return reg;
+    }
+    public String getEmail() {
+        return email;
+    }
 }
 

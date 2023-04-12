@@ -42,8 +42,10 @@ public class Db extends SQLiteOpenHelper {
         String stu = "CREATE TABLE \"stu_details\" (\n" +
                 "\t\"id\"\tTEXT NOT NULL,\n" +
                 "\t\"name\"\tTEXT NOT NULL,\n" +
+                "\t\"reg\"\t TEXT NOT NULL,\n" +
                 "\t\"yr\"\tTEXT NOT NULL,\n" +
                 "\t\"dept\"\tTEXT NOT NULL,\n" +
+                "\t\"email\"\t TEXT NOT NULL,\n" +
                 "\t\"phno\"\tTEXT NOT NULL,\n" +
                 "\t\"alt_phno\"\tTEXT NOT NULL,\n" +
                 "\tPRIMARY KEY(\"id\")\n" +
@@ -71,12 +73,12 @@ public class Db extends SQLiteOpenHelper {
         };
 
         String[][] stu_data = {
-                {"1","Janani","3","CSE","9080359005",""},
-                {"2","Srihari","3","CSE","9994502549",""},
-                {"3","Sakthivelraj","3","CSE","9003322644",""},
-                {"4","Bhuvaneshwari","3","ECE","9790673402",""},
-                {"5","Kareshmaa","4","CSE","9361261095",""},
-                {"6","Mirnalani","3","ECE","7358894368",""}
+                {"1","Janani","715520104013","3","CSE","d20z113@psgitech.ac.in","9080359005",""},
+                {"2","Srihari","715520104050","3","CSE","d20z111@psgitech.ac.in","9994502549",""},
+                {"3","Sakthivelraj","715520104045","3","CSE","d20z210@psgitech.ac.in","9003322644",""},
+                {"4","Bhuvaneshwari","715520106005","3","ECE","d20l112@psgitech.ac.in","9790673402",""},
+                {"5","Kareshmaa","715519104016","4","CSE","d19z123@psgitech.ac.in","9361261095",""},
+                {"6","Mirnalani","715520106018","3","ECE","d20l213@psgitech.ac.in","7358894368",""}
         };
 
         for(int i=0;i< login.length;i++){
@@ -88,7 +90,7 @@ public class Db extends SQLiteOpenHelper {
         }
 
         for(int i=0;i< stu_data.length;i++){
-            db.execSQL("insert into stu_details values ( '" + stu_data[i][0] + "','"+ stu_data[i][1] +"','"+ stu_data[i][2] +"','"+ stu_data[i][3] +"','"+ stu_data[i][4] +"','"+ stu_data[i][5] +"');");
+            db.execSQL("insert into stu_details values ( '" + stu_data[i][0] + "','"+ stu_data[i][1] +"','"+ stu_data[i][2] +"','"+ stu_data[i][3] +"','"+ stu_data[i][4] +"','"+ stu_data[i][5] +"','"+ stu_data[i][6] +"','"+ stu_data[i][7] +"');");
         }
 
     }
