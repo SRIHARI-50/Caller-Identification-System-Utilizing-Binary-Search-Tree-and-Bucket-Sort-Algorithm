@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.Objects;
@@ -38,7 +39,9 @@ public class homepage extends AppCompatActivity {
 
     public Db d;
 
-    Button cs,ee,ec,me,cv,all,add;
+    Button cs,ee,ec,me,cv,all;
+
+    FloatingActionButton add;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -199,7 +202,7 @@ public class homepage extends AppCompatActivity {
         SearchView searchView = (SearchView) item1.getActionView();
         Toolbar toolbar = (Toolbar) item2.getActionView();
 
-        searchView.setMaxWidth(690);
+        searchView.setMaxWidth(685);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,draw,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         draw.addDrawerListener(toggle);

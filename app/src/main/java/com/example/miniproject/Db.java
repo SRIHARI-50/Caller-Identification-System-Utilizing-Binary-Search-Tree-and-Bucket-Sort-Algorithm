@@ -22,13 +22,13 @@ public class Db extends SQLiteOpenHelper {
     public void create(){
 
         String fac = "CREATE TABLE \"fac_details\" (\n" +
-                "\t\"id\"\t TEXT NOT NULL,\n" +
+                "\t\"id\"\t TEXT,\n" +
                 "\t\"username\"\t TEXT NOT NULL,\n" +
-                "\t\"dept\"\t TEXT NOT NULL,\n" +
-                "\t\"email\"\t TEXT NOT NULL,\n" +
+                "\t\"dept\"\t TEXT,\n" +
                 "\t\"phno\"\t TEXT NOT NULL,\n" +
                 "\t\"intercom\"\t TEXT NOT NULL,\n" +
-                "\t\"alt_phno\"\t TEXT NOT NULL,\n" +
+                "\t\"alt_phno\"\t TEXT,\n" +
+                "\t\"email\"\t TEXT,\n" +
                 "\tPRIMARY KEY(\"id\")\n" +
                 ")";
 
@@ -48,7 +48,7 @@ public class Db extends SQLiteOpenHelper {
                 "\t\"email\"\t TEXT NOT NULL,\n" +
                 "\t\"phno\"\tTEXT NOT NULL,\n" +
                 "\t\"alt_phno\"\tTEXT NOT NULL,\n" +
-                "\tPRIMARY KEY(\"id\",\"reg\")\n" +
+                "\tPRIMARY KEY(\"id\")\n" +
                 ")";
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -59,18 +59,26 @@ public class Db extends SQLiteOpenHelper {
 
         String[][] login = {
                 {"1","user","1234"},
-                {"2","sri","sri"}
+                {"2","Sri","sri"},
+                {"3","Sakthi","sakthi"},
+                {"4","Janani","janani"}
         };
 
         String[][] fac_data = {
-                {"1","Faculty1","CSE","faculty1@gmail.com","9876543210","1",""},
-                {"2","faculty2","EEE","faculty2@gmail.com","1234567890","2",""}
+                {"1","Mahavishnu","CSE","8015514070","1","","mvvc@psgitech.ac.in"},
+                {"2","Aravindhraj","CSE","9487883339","2","","aravindhraj@psgitech.ac.in"},
+                {"3","Paldurai","ECE","8973277670","3","","paldurai.k@psgitech.ac.in"},
+                {"4","Santhanamari","ECE","9994229737","4","","gsm@psgitech.ac.in"},
+                {"5","Vilasini","CSE","9677819117","5","","vilasini@psgitech.ac.in"}
         };
 
         String[][] stu_data = {
-                {"1","Srihari","715520104050","2020","CSE","d20z111@psgitech.ac.in","9994502549",""},
-                {"2","Sakthi","715520104045","2020","CSE","d20z124@psgitech.ac.in","9003322644",""},
-                {"3","Janani","715520104013","2020","CSE","d20z133@psgitech.ac.in","9080359005",""},
+                {"1","Janani","715520104013","3","CSE","d20z113@psgitech.ac.in","9080359005",""},
+                {"2","Srihari","715520104050","3","CSE","d20z111@psgitech.ac.in","9994502549",""},
+                {"3","Sakthivelraj","715520104045","3","CSE","d20z210@psgitech.ac.in","9003322644",""},
+                {"4","Bhuvaneshwari","715520106005","3","ECE","d20l112@psgitech.ac.in","9790673402",""},
+                {"5","Kareshmaa","715519104016","4","CSE","d19z123@psgitech.ac.in","9361261095",""},
+                {"6","Mirnalani","715520106018","3","ECE","d20l213@psgitech.ac.in","7358894368",""}
         };
 
         for(int i=0;i< login.length;i++){
