@@ -1,64 +1,68 @@
 package com.example.miniproject;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class addContact extends AppCompatActivity {
+public class addStuContact extends AppCompatActivity {
 
-    private EditText nameEt,phoneEt,emailEt,deptEt,altEt,intEt;
-
-    //String variable;
-    private String uname,uphone,uemail,udept,alt,interco;
+    private EditText nameEt,regEt,yrEt,phoneEt,emailEt,deptEt,altEt;
 
     private DbHelper dbHelper;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_edit_contact);
+        setContentView(R.layout.stu_add_edit_contact);
 
-        nameEt = findViewById(R.id.username);
+        nameEt = findViewById(R.id.name);
         phoneEt = findViewById(R.id.phno);
         emailEt = findViewById(R.id.email);
         deptEt = findViewById(R.id.dept);
         altEt = findViewById(R.id.alt_phno);
-        intEt = findViewById(R.id.intercom);
+        regEt = findViewById(R.id.reg);
+        yrEt = findViewById(R.id.yr);
 
         Button ins = findViewById(R.id.insert);
 
         dbHelper = new DbHelper(this);
 
-        ins.setOnClickListener(v -> saveData());
-
+        ins.setOnClickListener(v -> saveDat());
     }
 
-    private void saveData() {
+
+    private void saveDat() {
+
+        String uname,uphone,uyr,ureg,uemail,udept,alt;
 
         uname = nameEt.getText().toString();
-        uphone = phoneEt.getText().toString();
-        uemail = emailEt.getText().toString();
+        ureg = regEt.getText().toString();
+        uyr = yrEt.getText().toString();
         udept = deptEt.getText().toString();
+        uemail = emailEt.getText().toString();
+        uphone = phoneEt.getText().toString();
         alt = altEt.getText().toString();
-        interco = intEt.getText().toString();
 
         if (!uname.isEmpty() || !uphone.isEmpty() || !uemail.isEmpty() || !udept.isEmpty()){
 
-            long id =  dbHelper.insertContact(
+            long id =  dbHelper.insertStuContact(
                     ""+uname,
+                    ""+ureg,
+                    ""+uyr,
                     ""+udept,
+                    ""+uemail,
                     ""+uphone,
-                    ""+interco,
-                    ""+alt,
-                    ""+uemail
+                    ""+alt
             );
 
             Toast.makeText(getApplicationContext(), "Inserted Successfully.... ", Toast.LENGTH_SHORT).show();
 
         }
+
     }
 
 }
-

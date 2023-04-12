@@ -16,6 +16,14 @@
             android:exported="true">
         </activity>
         <activity
+            android:name=".addContact"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".addStuContact"
+            android:exported="true">
+        </activity>
+        <activity
             android:name=".homepage"
             android:exported="true">
             <intent-filter>

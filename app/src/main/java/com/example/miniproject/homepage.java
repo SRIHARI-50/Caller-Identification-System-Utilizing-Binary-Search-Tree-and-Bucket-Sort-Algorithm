@@ -64,11 +64,10 @@ public class homepage extends AppCompatActivity {
                 .getBoolean("isFirstRun", true);
 
         if (isFirstRun) {
+            getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit()
+                    .putBoolean("isFirstRun", false).apply();
             d.create();
         }
-
-        getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit()
-                .putBoolean("isFirstRun", false).apply();
 
         if(SaveSharedPreference.getUserName(this).length() == 0)
         {
@@ -172,8 +171,15 @@ public class homepage extends AppCompatActivity {
 
         add.setOnClickListener(view -> {
 
-            Intent intent = new Intent(getApplicationContext(),login_page.class);
-            startActivity(intent);
+            if (s.equals("fac")) {
+                Intent intent = new Intent(getApplicationContext(), addContact.class);
+                startActivity(intent);
+            }
+            else {
+                Intent intent = new Intent(getApplicationContext(), addStuContact.class);
+                startActivity(intent);
+            }
+
         });
     }
 

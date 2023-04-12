@@ -40,7 +40,7 @@ public class Db extends SQLiteOpenHelper {
                 ")";
 
         String stu = "CREATE TABLE \"stu_details\" (\n" +
-                "\t\"id\"\tTEXT NOT NULL,\n" +
+                "\t\"id\"\tTEXT,\n" +
                 "\t\"name\"\tTEXT NOT NULL,\n" +
                 "\t\"reg\"\t TEXT NOT NULL,\n" +
                 "\t\"yr\"\tTEXT NOT NULL,\n" +

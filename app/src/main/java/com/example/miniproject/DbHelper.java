@@ -1,10 +1,12 @@
 package com.example.miniproject;
 
 import android.app.VoiceInteractor;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.SyncStateContract;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -31,7 +33,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     public boolean authenticate(String username, String password){
 
-        String pass = " ";
+        String pass = "";
 
         boolean auth;
 
@@ -246,6 +248,49 @@ public class DbHelper extends SQLiteOpenHelper {
         }
         db.close();
         return contactList;
+    }
+
+    public long insertContact(String name,String dept,String phone,String intercom,String alt,String email){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put("username",name);
+        contentValues.put("dept",dept);
+        contentValues.put("phno",phone);
+        contentValues.put("intercom",intercom);
+        contentValues.put("alt_phno",alt);
+        contentValues.put("email",email);
+
+        long id = db.insert("fac_details",null,contentValues);
+
+        db.close();
+
+        return id;
+
+    }
+
+    public long insertStuContact(String name,String reg,String yr,String dept,String email,String phone,String alt){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put("name",name);
+        contentValues.put("reg",reg);
+        contentValues.put("yr",yr);
+        contentValues.put("dept",dept);
+        contentValues.put("email",email);
+        contentValues.put("phno",phone);
+        contentValues.put("alt_phno",alt);
+
+        long id = db.insert("stu_details",null,contentValues);
+
+        db.close();
+
+        return id;
+
     }
 
 }

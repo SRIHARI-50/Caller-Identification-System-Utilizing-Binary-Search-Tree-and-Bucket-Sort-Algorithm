@@ -8,6 +8,7 @@
     <TextView
         android:text="STUDENT CONTACT"
         android:textSize="25dp"
+        android:id="@+id/id"
         android:layout_marginBottom="20dp"
         android:textStyle="bold"
         android:textColor="@color/black"
@@ -15,19 +16,8 @@
         android:layout_marginTop="90dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/id"
-        android:layout_width="256dp"
-        android:layout_height="41dp"
-        android:layout_gravity="center"
-        android:layout_marginStart="75dp"
-        android:layout_marginTop="170dp"
-        android:background="#40ffffff"
-        android:hint="Id"
-        android:paddingStart="20dp"
-        android:paddingTop="10dp" />
 
-    <TextView
+    <EditText
         android:id="@+id/name"
         android:layout_below="@+id/id"
         android:layout_width="256dp"
@@ -40,9 +30,22 @@
         android:paddingStart="20dp"
         android:paddingTop="10dp" />
 
-    <TextView
-        android:id="@+id/yr"
+    <EditText
+        android:id="@+id/reg"
         android:layout_below="@+id/name"
+        android:layout_width="256dp"
+        android:layout_height="41dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="15dp"
+        android:background="#40ffffff"
+        android:hint="Regno"
+        android:paddingStart="20dp"
+        android:paddingTop="10dp" />
+
+    <EditText
+        android:id="@+id/yr"
+        android:layout_below="@+id/reg"
         android:layout_width="256dp"
         android:layout_height="41dp"
         android:layout_gravity="center"
@@ -53,7 +56,7 @@
         android:paddingStart="20dp"
         android:paddingTop="10dp" />
 
-    <TextView
+    <EditText
         android:id="@+id/dept"
         android:layout_below="@+id/yr"
         android:layout_width="256dp"
@@ -65,9 +68,23 @@
         android:hint="Dept"
         android:paddingStart="20dp"
         android:paddingTop="10dp" />
-    <TextView
-        android:id="@+id/phno"
+
+    <EditText
+        android:id="@+id/email"
         android:layout_below="@+id/dept"
+        android:layout_width="256dp"
+        android:layout_height="41dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="15dp"
+        android:background="#40ffffff"
+        android:hint="Email"
+        android:paddingStart="20dp"
+        android:paddingTop="10dp" />
+
+    <EditText
+        android:id="@+id/phno"
+        android:layout_below="@+id/email"
         android:layout_width="256dp"
         android:layout_height="41dp"
         android:layout_gravity="center"
@@ -78,7 +95,7 @@
         android:paddingStart="20dp"
         android:paddingTop="10dp" />
 
-    <TextView
+    <EditText
         android:id="@+id/alt_phno"
         android:layout_below="@+id/phno"
         android:layout_width="256dp"
