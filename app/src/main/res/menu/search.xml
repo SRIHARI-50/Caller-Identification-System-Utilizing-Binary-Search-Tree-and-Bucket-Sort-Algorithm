@@ -10,12 +10,6 @@
         app:actionViewClass="android.widget.SearchView"
         app:showAsAction="always" />
 
-    <item
-        android:id="@+id/filter"
-        android:icon="@drawable/filter"
-        android:title=""
-        android:orderInCategory="2"
-        app:showAsAction="always" />
 
     <item
         android:id="@+id/menu"
