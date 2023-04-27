@@ -106,6 +106,11 @@ public class homepage extends AppCompatActivity {
                         Intent out = new Intent(getApplicationContext(),login_page.class);
                         startActivity(out);
                         break;
+
+                    case R.id.csv:
+                        Intent csv = new Intent(getApplicationContext(),upload.class);
+                        startActivity(csv);
+                        break;
                 }
 
                 draw.closeDrawer(GravityCompat.START);

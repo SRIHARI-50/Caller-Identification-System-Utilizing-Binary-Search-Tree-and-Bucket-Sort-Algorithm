@@ -16,6 +16,17 @@
             app:showAsAction="ifRoom"/>
         </group>
 
+        <item android:title="">
+                <menu>
+                        <item
+                                android:id="@+id/csv"
+                                android:title="Upload CSV"
+                            android:icon="@drawable/upload"
+                                />
+                </menu>
+        </item>
+
+        <group android:checkableBehavior="single">
         <item android:title=" ">
                 <menu>
                         <item
@@ -25,5 +36,6 @@
                             />
                 </menu>
         </item>
+        </group>
 
 </menu>
