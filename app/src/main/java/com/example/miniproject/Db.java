@@ -13,6 +13,7 @@ public class Db extends SQLiteOpenHelper {
         super(context, "test", null, 1);
     }
 
+    SQLiteDatabase db = this.getReadableDatabase();
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
     }
@@ -51,7 +52,6 @@ public class Db extends SQLiteOpenHelper {
                 "\tPRIMARY KEY(\"id\" AUTOINCREMENT)\n" +
                 ")";
 
-        SQLiteDatabase db = this.getReadableDatabase();
 
         db.execSQL(user);
         db.execSQL(stu);
@@ -74,8 +74,6 @@ public class Db extends SQLiteOpenHelper {
 
         String[][] stu_data = {
                 {"Janani","715520104013","3","CSE","d20z113@psgitech.ac.in","9080359005",""},
-                {"Srihari","715520104050","3","CSE","d20z111@psgitech.ac.in","9994502549",""},
-                {"Sakthivelraj","715520104045","3","CSE","d20z210@psgitech.ac.in","9003322644",""},
                 {"Bhuvaneshwari","715520106005","3","ECE","d20l112@psgitech.ac.in","9790673402",""},
                 {"Kareshmaa","715519104016","4","CSE","d19z123@psgitech.ac.in","9361261095",""},
                 {"Mirnalani","715520106018","3","ECE","d20l213@psgitech.ac.in","7358894368",""}
@@ -92,6 +90,11 @@ public class Db extends SQLiteOpenHelper {
         for(int i=0;i< stu_data.length;i++){
             db.execSQL("insert into stu_details(name,reg,yr,dept,email,phno,alt_phno) values ( '" + stu_data[i][0] + "','"+ stu_data[i][1] +"','"+ stu_data[i][2] +"','"+ stu_data[i][3] +"','"+ stu_data[i][4] +"','"+ stu_data[i][5] +"','"+ stu_data[i][6] +"');");
         }
+
+    }
+
+    public void add(String a,String b,String c,String d,String e,String f,String g){
+        db.execSQL("insert into stu_details(name,reg,yr,dept,email,phno,alt_phno) values ( '" + a + "','"+ b +"','"+ c +"','"+ d +"','"+ e +"','"+ f +"','"+ g +"');");
 
     }
 

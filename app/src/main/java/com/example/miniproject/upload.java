@@ -4,6 +4,7 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static android.os.Build.VERSION.SDK_INT;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ import java.util.Objects;
 
 public class upload extends AppCompatActivity {
 
+    Db db;
     @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -92,15 +94,13 @@ public class upload extends AppCompatActivity {
         ArrayList<String> arrayList = new ArrayList<>();
         File file=new File(path);
 
-        System.out.println(path);
-
         try {
 
             CSVReader reader = new CSVReader(new FileReader(file));
             String[] nextLine;
             while ((nextLine = reader.readNext()) != null) {
 
-                arrayList.add(nextLine[0]);
+                        db.add(nextLine[0],nextLine[1],nextLine[2],nextLine[3],nextLine[4],nextLine[5],nextLine[6]);
 
             }
 
