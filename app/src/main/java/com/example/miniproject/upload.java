@@ -3,6 +3,7 @@ package com.example.miniproject;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static android.os.Build.VERSION.SDK_INT;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.Settings;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -29,7 +31,13 @@ import java.util.Objects;
 
 public class upload extends AppCompatActivity {
 
-    Db db;
+    private Db db;
+
+    private String type;
+
+    Button stu,fac;
+
+    @SuppressLint("MissingInflatedId")
     @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,35 +46,64 @@ public class upload extends AppCompatActivity {
 
         Objects.requireNonNull(getSupportActionBar()).setTitle("");
 
-        if(SDK_INT >= Build.VERSION_CODES.R)
+        fac = findViewById(R.id.b1);
+        stu = findViewById(R.id.b2);
+
+        fac.setOnClickListener(view ->
         {
-            if(Environment.isExternalStorageManager()){
-                //choosing csv file
-                Intent intent=new Intent();
+            type = "fac";
+            if (SDK_INT >= Build.VERSION_CODES.R) {
+                if (Environment.isExternalStorageManager()) {
+
+                    Intent intent = new Intent();
+                    intent.setType("*/*");
+                    intent.putExtra(Intent.EXTRA_AUTO_LAUNCH_SINGLE_CHOICE, true);
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(Intent.createChooser(intent, "Select CSV File "), 101);
+                } else {
+                    Intent intent = new Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+                    startActivity(intent);
+                }
+            } else {
+
+                Intent intent = new Intent();
                 intent.setType("*/*");
-                intent.putExtra(Intent.EXTRA_AUTO_LAUNCH_SINGLE_CHOICE,true);
+                intent.putExtra(Intent.EXTRA_AUTO_LAUNCH_SINGLE_CHOICE, true);
                 intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent,"Select CSV File "),101);
+
+                ActivityCompat.requestPermissions(upload.this, new String[]{WRITE_EXTERNAL_STORAGE}, 102);
+
+
             }
-            else{
-                //getting permission from user
-                Intent intent=new Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
-                Uri uri=Uri.fromParts("package",getPackageName(),null);
-                startActivity(intent);
+        });
+
+        stu.setOnClickListener(view ->
+        {
+            type = "stu";
+            if (SDK_INT >= Build.VERSION_CODES.R) {
+                if (Environment.isExternalStorageManager()) {
+
+                    Intent intent = new Intent();
+                    intent.setType("*/*");
+                    intent.putExtra(Intent.EXTRA_AUTO_LAUNCH_SINGLE_CHOICE, true);
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(Intent.createChooser(intent, "Select CSV File "), 101);
+                } else {
+                    Intent intent = new Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+                    startActivity(intent);
+                }
+            } else {
+
+                Intent intent = new Intent();
+                intent.setType("*/*");
+                intent.putExtra(Intent.EXTRA_AUTO_LAUNCH_SINGLE_CHOICE, true);
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+
+                ActivityCompat.requestPermissions(upload.this, new String[]{WRITE_EXTERNAL_STORAGE}, 102);
+
+
             }
-        }
-        else{
-            // for below android 11
-
-            Intent intent=new Intent();
-            intent.setType("*/*");
-            intent.putExtra(Intent.EXTRA_AUTO_LAUNCH_SINGLE_CHOICE,true);
-            intent.setAction(Intent.ACTION_GET_CONTENT);
-
-            ActivityCompat.requestPermissions(upload.this,new String[] {WRITE_EXTERNAL_STORAGE},102);
-
-
-        }
+        });
     }
 
     Uri fileuri;
@@ -76,12 +113,10 @@ public class upload extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==101 && data!=null){
             fileuri=data.getData();
-            readCSVFile(getFilePathFromUri(fileuri));
+            readCSVFile(getFilePathFromUri(fileuri),type);
         }
     }
 
-
-    // this method is used for getting file path from uri
     public String getFilePathFromUri(Uri uri){
         String[] filename1;
         String filepath=uri.getPath();
@@ -89,9 +124,8 @@ public class upload extends AppCompatActivity {
         return filePath1[1];
     }
 
-    public void readCSVFile(String path){
+    public void readCSVFile(String path,String t){
 
-        ArrayList<String> arrayList = new ArrayList<>();
         File file=new File(path);
 
         try {
@@ -100,7 +134,12 @@ public class upload extends AppCompatActivity {
             String[] nextLine;
             while ((nextLine = reader.readNext()) != null) {
 
-                        db.add(nextLine[0],nextLine[1],nextLine[2],nextLine[3],nextLine[4],nextLine[5],nextLine[6]);
+                db = new Db(this);
+
+                if(t.equals("stu"))
+                    db.add(nextLine);
+                else
+                    db.facadd(nextLine);
 
             }
 
@@ -108,10 +147,5 @@ public class upload extends AppCompatActivity {
             e.printStackTrace();
             Toast.makeText(upload.this,"Error",Toast.LENGTH_SHORT).show();
         }
-
-        final ListView list = findViewById(R.id.list);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, arrayList);
-        list.setAdapter(arrayAdapter);
-
     }
 }

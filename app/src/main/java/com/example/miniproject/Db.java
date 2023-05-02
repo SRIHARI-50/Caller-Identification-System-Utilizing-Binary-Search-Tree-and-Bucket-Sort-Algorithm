@@ -65,9 +65,7 @@ public class Db extends SQLiteOpenHelper {
         };
 
         String[][] fac_data = {
-                {"Mahavishnu","CSE","8015514070","1","","mvvc@psgitech.ac.in"},
                 {"Aravindhraj","CSE","9487883339","2","","aravindhraj@psgitech.ac.in"},
-                {"Paldurai","ECE","8973277670","3","","paldurai.k@psgitech.ac.in"},
                 {"Santhanamari","ECE","9994229737","4","","gsm@psgitech.ac.in"},
                 {"Vilasini","CSE","9677819117","5","","vilasini@psgitech.ac.in"}
         };
@@ -93,8 +91,15 @@ public class Db extends SQLiteOpenHelper {
 
     }
 
-    public void add(String a,String b,String c,String d,String e,String f,String g){
-        db.execSQL("insert into stu_details(name,reg,yr,dept,email,phno,alt_phno) values ( '" + a + "','"+ b +"','"+ c +"','"+ d +"','"+ e +"','"+ f +"','"+ g +"');");
+    public void add(String[] stu_data){
+
+        db.execSQL("insert into stu_details(name,reg,yr,dept,email,phno,alt_phno) values ( '" + stu_data[0] + "','"+ stu_data[1] +"','"+ stu_data[2] +"','"+ stu_data[3] +"','"+ stu_data[4] +"','"+ stu_data[5] +"','"+ stu_data[6] +"');");
+
+    }
+
+    public void facadd(String[] fac_data){
+
+        db.execSQL("insert into fac_details(username,dept,phno,intercom,alt_phno,email) values ( '" + fac_data[0] + "','"+ fac_data[1] +"','"+ fac_data[2] +"','"+ fac_data[3] +"','"+ fac_data[4] +"','"+ fac_data[5] +"');");
 
     }
 
