@@ -293,4 +293,57 @@ public class DbHelper extends SQLiteOpenHelper {
 
     }
 
+    String name(String n){
+
+        String name = "";
+        String a;
+
+        SQLiteDatabase db = getReadableDatabase();
+
+        String queryToSearch = "SELECT name,yr,dept FROM stu_details WHERE phno = '" + n +"'";
+
+        Cursor cursor = db.rawQuery(queryToSearch,null);
+
+        if (cursor.moveToFirst()){
+                name = ""+cursor.getString(cursor.getColumnIndexOrThrow("name"));
+                a = ""+cursor.getString(cursor.getColumnIndexOrThrow("yr"));
+
+                switch (a){
+                    case "1":
+                        name += ", "+a+"st yr, ";
+                        break;
+                    case "2":
+                        name += ", "+a+"nd yr, ";
+                        break;
+                    case "3":
+                        name += ", "+a+"rd yr, ";
+                        break;
+                    case "4":
+                        name += ", "+a+"th yr, ";
+                        break;
+                }
+                name += ""+cursor.getString(cursor.getColumnIndexOrThrow("dept"));
+        }
+
+        if(name.equals("")){
+
+            queryToSearch = "SELECT username,dept FROM fac_details WHERE phno = '" + n +"'";
+
+            cursor = db.rawQuery(queryToSearch,null);
+
+            if (cursor.moveToFirst()){
+                    name =  ""+cursor.getString(cursor.getColumnIndexOrThrow("username"))+", "+
+                            ""+cursor.getString(cursor.getColumnIndexOrThrow("dept"));
+            }
+        }
+
+        db.close();
+
+        if(name.equals(""))
+            name = "Unknown number";
+
+        return name;
+
+    }
+
 }

@@ -119,7 +119,7 @@ public class upload extends AppCompatActivity {
 
     public String getFilePathFromUri(Uri uri){
         String filepath=uri.getPath();
-        String filePath1[]=filepath.split(":");
+        String[] filePath1=filepath.split(":");
         return Environment.getExternalStorageDirectory().getPath()+"/"+filePath1[1];
     }
 

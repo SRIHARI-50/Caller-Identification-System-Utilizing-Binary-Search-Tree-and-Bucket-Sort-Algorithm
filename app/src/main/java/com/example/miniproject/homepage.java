@@ -1,30 +1,50 @@
 package com.example.miniproject;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.media.RingtoneManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.RemoteViews;
 import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class homepage extends AppCompatActivity {
 
+    public static final int MY_PERMISSIONS_REQUEST_READ_CALL_LOG = 0;
+    public static final int MY_PERMISSIONS_REQUEST_READ_PHONE_STATE = 1;
+    public static final int MY_PERMISSIONS_REQUEST_PROCESS_OUTGOING_CALLS = 2;
     private RecyclerView contactRv;
 
     private DbHelper dbHelper;
@@ -41,13 +61,39 @@ public class homepage extends AppCompatActivity {
 
     Button cs,ee,ec,me,cv,all;
 
+    CallReceiver callReceiver;
     FloatingActionButton add;
+
+    WebView webView;
+
+    NotificationManager notificationManager;
+
+    NotificationChannel notificationChannel;
+
+    RemoteViews customView;
+
+    int notificationCounter = 0;
+
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
+
+        if (ContextCompat.checkSelfPermission(homepage.this, android.Manifest.permission.READ_CALL_LOG) != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(homepage.this, new String[]{Manifest.permission.READ_CALL_LOG}, MY_PERMISSIONS_REQUEST_READ_CALL_LOG);
+        }
+
+        // dynamically register CallReceiver
+        if (callReceiver == null) {
+            callReceiver = new CallReceiver();
+        }
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("android.intent.action.PHONE_STATE");
+        intentFilter.addAction("android.intent.action.NEW_OUTGOING_CALL");
+        registerReceiver(callReceiver, intentFilter);
 
         cs = findViewById(R.id.cse);
         ee = findViewById(R.id.eee);
@@ -186,6 +232,7 @@ public class homepage extends AppCompatActivity {
             }
 
         });
+
     }
 
     public void onBackPressed(){
@@ -265,6 +312,139 @@ public class homepage extends AppCompatActivity {
     private void stuloadData() {
         adapterContac = new stuAdapter(this,dbHelper.getstuData());
         contactRv.setAdapter(adapterContac);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // manually unregister CallReceiver
+        if (callReceiver != null) {
+            unregisterReceiver(callReceiver);
+            callReceiver = null;
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_READ_CALL_LOG: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Log.d("###", "READ_CALL_LOG granted!");
+                    if (ContextCompat.checkSelfPermission(homepage.this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(homepage.this, new String[]{Manifest.permission.READ_PHONE_STATE}, MY_PERMISSIONS_REQUEST_READ_PHONE_STATE);
+                    }
+                } else {
+                    Log.d("###", "READ_CALL_LOG denied!");
+                    Toast.makeText(getApplicationContext(), "missing READ_CALL_LOG", Toast.LENGTH_LONG).show();
+                }
+                break;
+            }
+            case MY_PERMISSIONS_REQUEST_READ_PHONE_STATE: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Log.d("###", "READ_PHONE_STATE granted!");
+                    if (ContextCompat.checkSelfPermission(homepage.this, Manifest.permission.PROCESS_OUTGOING_CALLS) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(homepage.this, new String[]{Manifest.permission.PROCESS_OUTGOING_CALLS}, MY_PERMISSIONS_REQUEST_PROCESS_OUTGOING_CALLS);
+                    }
+                } else {
+                    Log.d("###", "READ_PHONE_STATE denied!");
+                    Toast.makeText(getApplicationContext(), "missing READ_PHONE_STATE", Toast.LENGTH_LONG).show();
+                }
+                break;
+            }
+            case MY_PERMISSIONS_REQUEST_PROCESS_OUTGOING_CALLS: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Log.d("###", "PROCESS_OUTGOING_CALLS granted!");
+                } else {
+                    Log.d("###", "PROCESS_OUTGOING_CALLS denied!");
+                    Toast.makeText(getApplicationContext(), "missing PROCESS_OUTGOING_CALLS", Toast.LENGTH_LONG).show();
+                }
+                break;
+            }
+        }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK) && webView.canGoBack()) {
+            webView.goBack();
+
+            return true;
+        }
+
+        return super.onKeyDown(keyCode, event);
+    }
+
+    class CallReceiver extends PhonecallReceiver {
+
+        @Override
+        protected void onOutgoingCallStarted(Context ctx, String number, Date start) {
+        }
+
+        @Override
+        protected void onOutgoingCallEnded(Context ctx, String number, Date start, Date end) {
+        }
+
+        @SuppressLint("RestrictedApi")
+        @RequiresApi(api = Build.VERSION_CODES.S)
+        @Override
+        protected void onIncomingCallStarted(Context ctx, String number, Date start) {
+
+            String n = getCaller(number.substring(3));
+
+            customView = new RemoteViews(getPackageName(), R.layout.call_noti);
+            customView.setTextViewText(R.id.name,n);
+            customView.setTextViewText(R.id.no,number);
+
+            notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(homepage.this,createNotificationChannels().getId());
+            builder.setSmallIcon(R.drawable.ic_launcher_background);
+            builder.setContentTitle("Incoming call...");
+            builder.setContentText(n);
+            builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+            builder.setSmallIcon(R.drawable.phone);
+            builder.setAutoCancel(true);
+            builder.setStyle(new NotificationCompat.DecoratedCustomViewStyle());
+            builder.setCustomContentView(customView);
+            builder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
+            Intent notify = new Intent(homepage.this,homepage.class);
+            PendingIntent pendingIntent = PendingIntent.getActivity(homepage.this,0,notify,PendingIntent.FLAG_MUTABLE);
+            builder.setContentIntent(pendingIntent);
+
+            notificationManager.notify(notificationCounter,builder.build());
+            notificationCounter = notificationCounter + 1;
+
+        }
+
+        @Override
+        protected void onIncomingCallEnded(Context ctx, String number, Date start, Date end) {
+        }
+
+        @Override
+        protected void onMissedCall(Context ctx, String number, Date missed) {
+        }
+    }
+
+    String Channel_ID = "Notification ID";
+    String Channel_Name = "Notification Name";
+    private NotificationChannel createNotificationChannels() {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            notificationChannel = new NotificationChannel(Channel_ID, Channel_Name, NotificationManager.IMPORTANCE_HIGH);
+            notificationChannel.enableLights(true);
+            notificationChannel.enableVibration(true);
+            notificationChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+            notificationManager.createNotificationChannel(notificationChannel);
+            return notificationChannel;}
+        return null;
+    }
+
+    String getCaller(String n){
+        String res;
+
+        dbHelper = new DbHelper(this);
+
+        res = dbHelper.name(n);
+        return res;
     }
 
 }
