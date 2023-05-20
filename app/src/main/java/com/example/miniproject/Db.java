@@ -65,7 +65,7 @@ public class Db extends SQLiteOpenHelper {
         };
 
         String[][] fac_data = {
-                {"Aravindhraj","CSE","9842208163","2","","aravindhraj@psgitech.ac.in"},
+                {"Aravindhraj","CSE","9487883339","2","","aravindhraj@psgitech.ac.in"},
                 {"Santhanamari","ECE","9994229737","4","","gsm@psgitech.ac.in"},
                 {"Vilasini","CSE","9677819117","5","","vilasini@psgitech.ac.in"}
         };
@@ -74,8 +74,7 @@ public class Db extends SQLiteOpenHelper {
                 {"Janani","715520104013","3","CSE","d20z113@psgitech.ac.in","9080359005",""},
                 {"Bhuvaneshwari","715520106005","3","ECE","d20l112@psgitech.ac.in","9790673402",""},
                 {"Kareshmaa","715519104016","4","CSE","d19z123@psgitech.ac.in","9361261095",""},
-                {"Mirnalani","715520106018","3","ECE","d20l213@psgitech.ac.in","7358894368",""},
-                {"Vijay","1234567890","3","ECE","test@psgitech.ac.in","7418070482",""}
+                {"Mirnalani","715520106018","3","ECE","d20l213@psgitech.ac.in","7358894368",""}
         };
 
         for(int i=0;i< login.length;i++){

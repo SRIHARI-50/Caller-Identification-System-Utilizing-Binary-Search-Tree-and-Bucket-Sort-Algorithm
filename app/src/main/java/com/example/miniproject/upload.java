@@ -27,6 +27,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class upload extends AppCompatActivity {
@@ -130,7 +131,8 @@ public class upload extends AppCompatActivity {
         try {
 
             CSVReader reader = new CSVReader(new FileReader(file));
-            String[] nextLine;
+            String[] nextLine = new String[7];
+            Arrays.fill(nextLine,"");
             while ((nextLine = reader.readNext()) != null) {
 
                 db = new Db(this);
