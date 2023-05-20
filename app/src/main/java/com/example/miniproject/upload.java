@@ -131,8 +131,7 @@ public class upload extends AppCompatActivity {
         try {
 
             CSVReader reader = new CSVReader(new FileReader(file));
-            String[] nextLine = new String[7];
-            Arrays.fill(nextLine,"");
+            String[] nextLine;
             while ((nextLine = reader.readNext()) != null) {
 
                 db = new Db(this);
