@@ -121,7 +121,8 @@ public class upload extends AppCompatActivity {
     public String getFilePathFromUri(Uri uri){
         String filepath=uri.getPath();
         String[] filePath1=filepath.split(":");
-        return Environment.getExternalStorageDirectory().getPath()+"/"+filePath1[1];
+        return filePath1[1];
+        //Environment.getExternalStorageDirectory().getPath()+"/"+
     }
 
     public void readCSVFile(String path,String t){
