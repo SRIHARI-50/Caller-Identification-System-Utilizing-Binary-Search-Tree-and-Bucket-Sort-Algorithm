@@ -4,13 +4,19 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static android.os.Build.VERSION.SDK_INT;
 
 import android.annotation.SuppressLint;
+import android.content.ContentUris;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.DocumentsContract;
+import android.provider.MediaStore;
 import android.provider.Settings;
+import android.webkit.MimeTypeMap;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -20,12 +26,15 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.documentfile.provider.DocumentFile;
 
 import com.opencsv.CSVReader;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
@@ -119,15 +128,20 @@ public class upload extends AppCompatActivity {
     }
 
     public String getFilePathFromUri(Uri uri){
+
         String filepath=uri.getPath();
         String[] filePath1=filepath.split(":");
-        return filePath1[1];
-        //Environment.getExternalStorageDirectory().getPath()+"/"+
+
+        System.out.println(filePath1[1]);
+        return Environment.getExternalStorageDirectory().getPath() + "/" + filePath1[1];
     }
+
 
     public void readCSVFile(String path,String t){
 
-        File file=new File(path);
+        //File file=new File("/storage/emulated/0/Download/test.csv");
+
+        File file=new File("/storage/emulated/0/Android/media/com.whatsapp/WhatsApp/Media/WhatsApp Documents/test.csv");
 
         try {
 
